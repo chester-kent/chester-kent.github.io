@@ -1,0 +1,1040 @@
+/* =========================================
+   RESET
+========================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: "Inter", sans-serif;
+    background: #0b0f19;
+    color: #e5e7eb;
+    line-height: 1.7;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+ul {
+    list-style: none;
+}
+
+
+/* =========================================
+   GLOBAL
+========================================= */
+
+.container {
+    width: 90%;
+    max-width: 1150px;
+    margin: 0 auto;
+}
+
+.section {
+    padding: 110px 0;
+}
+
+.section-alt {
+    background: #111827;
+}
+
+.section-heading {
+    max-width: 750px;
+    margin-bottom: 60px;
+}
+
+.section-label {
+    color: #60a5fa;
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    margin-bottom: 15px;
+}
+
+.section-heading h2 {
+    font-size: clamp(2rem, 4vw, 3rem);
+    line-height: 1.2;
+    color: #ffffff;
+}
+
+.section-heading > p:last-child {
+    margin-top: 20px;
+    color: #9ca3af;
+}
+
+
+/* =========================================
+   Profile Image Modal
+========================================= */
+.profile-modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.85);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.profile-modal.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.profile-modal-image {
+    max-width: 80vw;
+    max-height: 80vh;
+    width: auto;
+    height: auto;
+
+    border-radius: 8px;
+    border: 1px solid #1f2937;
+
+    transform: scale(0.8);
+    transition: transform 0.3s ease;
+}
+
+.profile-modal.active .profile-modal-image {
+    transform: scale(1);
+}
+
+.profile-modal-close {
+    position: absolute;
+    top: 25px;
+    right: 35px;
+
+    background: none;
+    border: none;
+    color: #ffffff;
+
+    font-size: 40px;
+    line-height: 1;
+    cursor: pointer;
+
+    transition: color 0.3s ease;
+}
+
+.profile-modal-close:hover {
+    color: #60a5fa;
+}
+
+
+/* =========================================
+   NAVIGATION
+========================================= */
+
+.navbar {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+
+    background: rgba(11, 15, 25, 0.9);
+
+    border-bottom: 1px solid #1f2937;
+
+    backdrop-filter: blur(12px);
+}
+
+.nav-container {
+    height: 75px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+}
+
+.nav-profile {
+    width: 48px;
+    height: 48px;
+    object-fit: cover;
+    object-position: center top;
+    border-radius: 6px;
+    border: 1px solid #1f2937;
+    display: block;
+    transition: 0.3s ease;
+}
+
+.nav-profile:hover {
+    border-color: #3b82f6;
+    transform: translateY(-2px);
+}
+
+.nav-menu {
+    display: flex;
+    gap: 30px;
+}
+
+.nav-menu a {
+    color: #9ca3af;
+    font-size: 0.9rem;
+    transition: color 0.3s ease;
+    position: relative;
+}
+
+.nav-menu a:hover {
+    color: #60a5fa;
+}
+
+.nav-menu a.active {
+    color: #60a5fa;
+}
+
+.nav-menu a.active::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -10px;
+    height: 2px;
+    background: #3b82f6;
+    border-radius: 2px;
+}
+
+.nav-button {
+    padding: 10px 18px;
+
+    border: 1px solid #3b82f6;
+    border-radius: 6px;
+
+    color: #60a5fa;
+
+    font-size: 0.85rem;
+    font-weight: 600;
+
+    transition: 0.3s;
+}
+
+.nav-button:hover {
+    background: #3b82f6;
+    color: #ffffff;
+}
+
+
+/* =========================================
+   HERO
+========================================= */
+
+.hero {
+    min-height: calc(100vh - 75px);
+
+    display: flex;
+    align-items: center;
+
+    position: relative;
+}
+
+.hero::before {
+    content: "";
+
+    position: absolute;
+
+    width: 500px;
+    height: 500px;
+
+    background: #2563eb;
+
+    filter: blur(180px);
+
+    opacity: 0.12;
+
+    top: 50px;
+    right: 10%;
+}
+
+.hero-content {
+    max-width: 1400px;
+
+    position: relative;
+    z-index: 1;
+}
+
+.eyebrow {
+    color: #60a5fa;
+
+    font-size: 0.9rem;
+
+    font-weight: 700;
+
+    letter-spacing: 3px;
+
+    margin-bottom: 20px;
+}
+
+.hero h1 {
+    max-width: 1250px;
+
+    font-size: clamp(3rem, 6vw, 5.8rem);
+
+    line-height: 1.05;
+
+    letter-spacing: -3px;
+
+    color: #ffffff;
+
+    margin-bottom: 30px;
+}
+
+.hero h1 span {
+    color: #60a5fa;
+}
+
+.hero-description {
+    max-width: 700px;
+
+    color: #9ca3af;
+
+    font-size: 1.1rem;
+
+    margin-bottom: 35px;
+}
+
+
+/* =========================================
+   BUTTONS
+========================================= */
+
+.hero-buttons {
+    display: flex;
+    gap: 15px;
+
+    margin-bottom: 30px;
+}
+
+.button {
+    display: inline-block;
+
+    padding: 13px 24px;
+
+    border-radius: 6px;
+
+    font-weight: 600;
+
+    transition: 0.3s;
+}
+
+.button-primary {
+    background: #3b82f6;
+
+    color: #ffffff;
+}
+
+.button-primary:hover {
+    background: #2563eb;
+
+    transform: translateY(-2px);
+}
+
+.button-secondary {
+    border: 1px solid #374151;
+
+    color: #d1d5db;
+}
+
+.button-secondary:hover {
+    border-color: #60a5fa;
+
+    color: #60a5fa;
+}
+
+.hero-links {
+    display: flex;
+    gap: 25px;
+
+    color: #6b7280;
+
+    font-size: 0.9rem;
+}
+
+.hero-links a:hover {
+    color: #ffffff;
+}
+
+
+/* =========================================
+   ABOUT
+========================================= */
+
+.about-grid {
+    display: grid;
+
+    grid-template-columns: 1.5fr 1fr;
+
+    gap: 80px;
+
+    align-items: center;
+}
+
+.about-text p {
+    color: #9ca3af;
+
+    margin-bottom: 20px;
+
+    font-size: 1rem;
+}
+
+.about-highlights {
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 15px;
+}
+
+.highlight-card {
+    padding: 25px 15px;
+
+    background: #0b0f19;
+
+    border: 1px solid #1f2937;
+
+    border-radius: 8px;
+
+    text-align: center;
+}
+
+.highlight-number {
+    display: block;
+
+    color: #60a5fa;
+
+    font-size: 2rem;
+
+    font-weight: 800;
+}
+
+.highlight-text {
+    color: #9ca3af;
+
+    font-size: 0.75rem;
+
+    line-height: 1.4;
+}
+
+
+/* =========================================
+   EXPERIENCE
+========================================= */
+
+.timeline {
+    position: relative;
+
+    max-width: 1050px;
+}
+
+/*
+    Vertical timeline line.
+
+    This is positioned between
+    the date and the experience content.
+*/
+
+.timeline::before {
+    content: "";
+
+    position: absolute;
+
+    /*
+        220px moves the line further right.
+        Previously this was 145px.
+    */
+    left: 220px;
+
+    top: 0;
+    bottom: 0;
+
+    width: 1px;
+
+    background: #374151;
+}
+
+
+/*
+    Each experience row
+*/
+
+.timeline-item {
+    display: grid;
+
+    /*
+        First column = date
+        Second column = job information
+    */
+    grid-template-columns: 220px 1fr;
+
+    /*
+        Space between date and job information
+    */
+    gap: 60px;
+
+    position: relative;
+
+    padding-bottom: 75px;
+}
+
+
+/*
+    Date column
+*/
+
+.timeline-date {
+    color: #60a5fa;
+
+    font-size: 0.85rem;
+
+    font-weight: 600;
+
+    padding-top: 5px;
+
+    /*
+        Extra space before the timeline line
+    */
+    padding-right: 20px;
+
+    text-align: left;
+
+    white-space: nowrap;
+}
+
+
+/*
+    Experience content
+*/
+
+.timeline-content {
+    position: relative;
+}
+
+
+/*
+    Timeline circle
+*/
+
+.timeline-content::before {
+    content: "";
+
+    position: absolute;
+
+    width: 10px;
+    height: 10px;
+
+    border-radius: 50%;
+
+    background: #3b82f6;
+
+    /*
+        The circle is positioned relative
+        to the content area.
+
+        Since we increased the gap,
+        we move the circle further left.
+    */
+    left: -66px;
+
+    top: 9px;
+
+    box-shadow: 0 0 0 5px #111827;
+}
+
+
+/*
+    Job title
+*/
+
+.timeline-content h3 {
+    color: #ffffff;
+
+    font-size: 1.5rem;
+
+    margin-bottom: 5px;
+}
+
+
+/*
+    Company
+*/
+
+.timeline-content h4 {
+    color: #d1d5db;
+
+    font-size: 1rem;
+
+    font-weight: 600;
+
+    margin-bottom: 2px;
+}
+
+
+/*
+    Location
+*/
+
+.timeline-content > p {
+    color: #6b7280;
+
+    font-size: 0.85rem;
+
+    margin-bottom: 20px;
+}
+
+
+/*
+    Responsibilities
+*/
+
+.timeline-content ul {
+    margin-bottom: 20px;
+}
+
+.timeline-content li {
+    color: #9ca3af;
+
+    font-size: 0.9rem;
+
+    margin-bottom: 10px;
+
+    padding-left: 20px;
+
+    position: relative;
+}
+
+.timeline-content li::before {
+    content: "▹";
+
+    position: absolute;
+
+    left: 0;
+
+    color: #60a5fa;
+}
+
+
+/* =========================================
+   TECHNOLOGY TAGS
+========================================= */
+
+.tech-tags {
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 8px;
+}
+
+.tech-tags span {
+    padding: 5px 10px;
+
+    background: #1f2937;
+
+    border-radius: 4px;
+
+    color: #9ca3af;
+
+    font-size: 0.72rem;
+
+    font-weight: 600;
+
+    transition: 0.3s;
+}
+
+.tech-tags span:hover {
+    background: #4b5563;
+    color: #ffffff;
+}
+
+
+/* =========================================
+   PROJECTS
+========================================= */
+
+.projects-grid {
+    display: grid;
+
+    grid-template-columns: repeat(2, 1fr);
+
+    gap: 25px;
+}
+
+.project-card {
+    padding: 35px;
+
+    background: #111827;
+
+    border: 1px solid #1f2937;
+
+    border-radius: 10px;
+
+    transition: 0.3s;
+}
+
+.project-card:hover {
+    transform: translateY(-5px);
+
+    border-color: #3b82f6;
+}
+
+.featured-project {
+    grid-column: span 2;
+
+    background: linear-gradient(
+        135deg,
+        #111827,
+        #0f172a
+    );
+}
+
+.project-number {
+    color: #374151;
+
+    font-size: 0.8rem;
+
+    font-weight: 700;
+
+    margin-bottom: 25px;
+}
+
+.project-category {
+    color: #60a5fa;
+
+    font-size: 0.75rem;
+
+    font-weight: 700;
+
+    letter-spacing: 1px;
+
+    margin-bottom: 10px;
+}
+
+.project-content h3 {
+    color: #ffffff;
+
+    font-size: 1.5rem;
+
+    margin-bottom: 15px;
+}
+
+.project-content > p:not(.project-category) {
+    color: #9ca3af;
+
+    font-size: 0.9rem;
+
+    margin-bottom: 25px;
+}
+
+.project-link {
+    display: block;
+
+    color: #60a5fa;
+
+    font-size: 0.85rem;
+
+    font-weight: 600;
+
+    margin-top: 20px;
+}
+
+.project-link:hover {
+    color: #93c5fd;
+}
+
+
+/* =========================================
+   SKILLS
+========================================= */
+
+.skills-grid {
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 20px;
+}
+
+.skill-group {
+    padding: 30px;
+    background: #0b0f19;
+    border: 1px solid #1f2937;
+    border-radius: 8px;
+
+    transition:
+        transform 0.3s ease,
+        border-color 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+.skill-group:hover {
+    transform: translateY(-5px);
+    border-color: #3b82f6;
+}
+
+.skill-group h3 {
+    color: #ffffff;
+
+    font-size: 1rem;
+
+    margin-bottom: 20px;
+}
+
+.skill-list {
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 8px;
+}
+
+.skill-list span {
+    padding: 7px 11px;
+
+    background: #1f2937;
+
+    border-radius: 4px;
+
+    color: #9ca3af;
+
+    font-size: 0.75rem;
+
+    transition: 0.3s;
+}
+
+.skill-list span:hover {
+    background: #374151;
+    
+    color: #ffffff;
+}
+
+
+/* =========================================
+   CONTACT
+========================================= */
+
+.contact-section {
+    text-align: center;
+}
+
+.contact-content {
+    max-width: 700px;
+
+    margin: 0 auto;
+}
+
+.contact-content h2 {
+    color: #ffffff;
+
+    font-size: clamp(2.5rem, 5vw, 4rem);
+
+    line-height: 1.1;
+
+    margin-bottom: 20px;
+}
+
+.contact-content > p:not(.section-label) {
+    color: #9ca3af;
+
+    margin-bottom: 30px;
+}
+
+.contact-buttons {
+    display: flex;
+
+    justify-content: center;
+
+    gap: 15px;
+}
+
+
+/* =========================================
+   FOOTER
+========================================= */
+
+.footer {
+    padding: 25px 0;
+
+    border-top: 1px solid #1f2937;
+
+    color: #6b7280;
+
+    font-size: 0.8rem;
+}
+
+.footer-container {
+    display: flex;
+
+    justify-content: space-between;
+}
+
+
+/* =========================================
+   SCROLL REVEAL ANIMATION
+========================================= */
+
+.reveal {
+    opacity: 0;
+
+    transform: translateY(30px);
+
+    transition:
+        opacity 0.7s ease,
+        transform 0.7s ease;
+}
+
+.reveal.visible {
+    opacity: 1;
+
+    transform: translateY(0);
+}
+
+/* =========================================
+   SKILL CARD HOVER
+========================================= */
+
+.skill-group {
+    transition:
+        transform 0.3s ease,
+        border-color 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+.skill-group.reveal.visible:hover {
+    transform: translateY(-5px);
+    border-color: #3b82f6;
+}
+
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+@media (max-width: 900px) {
+
+    .nav-menu {
+        gap: 15px;
+    }
+
+    .about-grid {
+        grid-template-columns: 1fr;
+
+        gap: 40px;
+    }
+
+    .skills-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    /*
+        Smaller timeline spacing
+    */
+
+    .timeline::before {
+        left: 170px;
+    }
+
+    .timeline-item {
+        grid-template-columns: 170px 1fr;
+
+        gap: 40px;
+    }
+
+    .timeline-content::before {
+        left: -46px;
+    }
+
+}
+
+
+@media (max-width: 700px) {
+
+    .section {
+        padding: 80px 0;
+    }
+
+    .nav-button {
+        display: none;
+    }
+
+    .nav-menu {
+        gap: 12px;
+    }
+
+    .nav-menu a {
+        font-size: 0.75rem;
+    }
+
+    .hero h1 {
+        letter-spacing: -2px;
+    }
+
+    .hero-buttons {
+        flex-direction: column;
+
+        align-items: flex-start;
+    }
+
+    .about-highlights {
+        grid-template-columns: 1fr;
+    }
+
+    /*
+        Mobile timeline becomes
+        a normal vertical layout.
+    */
+
+    .timeline::before {
+        display: none;
+    }
+
+    .timeline-item {
+        grid-template-columns: 1fr;
+
+        gap: 10px;
+
+        padding-bottom: 50px;
+    }
+
+    .timeline-content::before {
+        display: none;
+    }
+
+    .timeline-date {
+        padding-right: 0;
+    }
+
+    .projects-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .featured-project {
+        grid-column: span 1;
+    }
+
+    .skills-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .footer-container {
+        flex-direction: column;
+
+        gap: 5px;
+
+        text-align: center;
+    }
+
+}
