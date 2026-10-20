@@ -78,7 +78,10 @@ document.addEventListener("DOMContentLoaded", function () {
         ".timeline-item, " +
         ".project-card, " +
         ".skill-group, " +
-        ".contact-content"
+        ".contact-content, " +
+        ".gallery-card, " +
+        ".gallery-item, " +
+        ".gallery-image-button"
     );
 
 
@@ -275,30 +278,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
     }
 
-
-
-    /* =====================================
-       CONSOLE MESSAGE
-    ===================================== */
-
-    /*
-        This is only for development.
-
-        Open Chrome DevTools:
-        F12 → Console
-    */
-
-    console.log(
-        "Chester Kent Canilao Portfolio loaded successfully."
-    );
-
     /* =====================================
         PROFILE IMAGE VIEWING
     ===================================== */
 
     const profileLogo = document.querySelector(".logo");
-    const profileModal = document.getElementById("profileModal");
-    const profileModalClose = document.getElementById("profileModalClose");
 
     profileLogo.addEventListener("click", function (event) {
 
@@ -311,47 +295,86 @@ document.addEventListener("DOMContentLoaded", function () {
             rect.top <= window.innerHeight / 2 &&
             rect.bottom >= window.innerHeight / 2;
 
-        if (isHomeVisible) {
-
-            profileModal.classList.add("active");
-
-        } else {
-
-            window.scrollTo({
+        if (!isHomeVisible) {
+             window.scrollTo({
                 top: 0,
                 behavior: "smooth"
             });
-
         }
-
     });
 
-    profileModalClose.addEventListener("click", function () {
+    // =========================
+    // GALLERY IMAGE MODAL
+    // =========================
 
-        profileModal.classList.remove("active");
+    const galleryModal = document.getElementById("galleryModal");
+    const galleryModalImage = document.getElementById("galleryModalImage");
+    const galleryModalTitle = document.getElementById("galleryModalTitle");
+    const galleryModalDescription = document.getElementById("galleryModalDescription");
+    const galleryModalClose = document.getElementById("galleryModalClose");
 
-    });
+    const galleryButtons = document.querySelectorAll(".gallery-image-button");
 
+    let previousGalleryFocus = null;
 
-    profileModal.addEventListener("click", function (event) {
+    function closeGalleryModal() {
+        if (!galleryModal) return;
 
-        if (event.target === profileModal) {
+        galleryModal.classList.remove("active");
+        galleryModal.setAttribute("aria-hidden", "true");
 
-            profileModal.classList.remove("active");
+        document.body.style.overflow = "";
 
+        if (previousGalleryFocus) {
+            previousGalleryFocus.focus();
+            previousGalleryFocus = null;
         }
+    }
 
+    galleryButtons.forEach(function (button) {
+        button.addEventListener("click", function () {
+            const image = button.querySelector("img");
+
+            if (!image || !galleryModal) return;
+
+            previousGalleryFocus = button;
+
+            galleryModalImage.src = image.src;
+            galleryModalImage.alt = image.alt;
+            galleryModalTitle.textContent =
+                button.dataset.title || image.alt;
+            galleryModalDescription.textContent =
+                button.dataset.description || "";
+
+            galleryModal.classList.add("active");
+            galleryModal.setAttribute("aria-hidden", "false");
+
+            document.body.style.overflow = "hidden";
+
+            galleryModalClose.focus();
+        });
     });
 
+    if (galleryModalClose) {
+        galleryModalClose.addEventListener("click", closeGalleryModal);
+    }
+
+    if (galleryModal) {
+        galleryModal.addEventListener("click", function (event) {
+            if (event.target === galleryModal) {
+                closeGalleryModal();
+            }
+        });
+    }
 
     document.addEventListener("keydown", function (event) {
-
-        if (event.key === "Escape") {
-
-            profileModal.classList.remove("active");
-
+        if (
+            event.key === "Escape" &&
+            galleryModal &&
+            galleryModal.classList.contains("active")
+        ) {
+            closeGalleryModal();
         }
-
     });
 
 });
